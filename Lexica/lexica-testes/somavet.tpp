@@ -1,4 +1,4 @@
-inteiro: @ 
+inteiro: T 
 T:= 4
 
 inteiro: V1[T]
