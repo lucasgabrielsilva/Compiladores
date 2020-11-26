@@ -2,7 +2,6 @@ import ply.lex as lex
 
 class Lexica:
   reservadas = {
-    'repita': 'REPITA',
     'até': 'ATE',
     'então': 'ENTAO',
     'escreva': 'ESCREVA',
@@ -10,12 +9,14 @@ class Lexica:
     'flutuante': 'FLUTUANTE',
     'inteiro': 'INTEIRO',
     'leia': 'LEIA',
+    'repita': 'REPITA',
     'retorna': 'RETORNA',
     'se': 'SE',
-    'senão': 'SENAO'
+    'senão': 'SENAO',
+    'cientifica': 'NOTACAO_CIENTIFICA'
   }
-      
-  tokens = [  
+
+  tokens = [
     'ABRE_CHAVES',
     'ABRE_COLCHETE',
     'ABRE_PARENTESE',
@@ -28,15 +29,15 @@ class Lexica:
     'ESCREVA',
     'E_LOGICO',
     'FECHA_CHAVES',
-    'FECHA_COLCHETE', 
+    'FECHA_COLCHETE',
     'FECHA_PARENTESE',
     'FIM',
     'FLUTUANTE',
     'ID',
-    'IGUAL', 
+    'IGUAL',
     'INTEIRO',
     'LEIA',
-    'MAIOR', 
+    'MAIOR',
     'MAIS',
     'MAIOR_IGUAL',
     'MENOR',
@@ -44,18 +45,19 @@ class Lexica:
     'MENOR_IGUAL',
     'MULTIPLICACAO',
     'NEGACAO',
+    'NOTACAO_CIENTIFICA',
     'OU_LOGICO',
     'REPITA',
     'RETORNA',
     'SE',
     'SENAO',
     'VIRGULA'
-  ]  
-  
+  ]
+
   t_ABRE_CHAVES = r'\{'
   t_ABRE_COLCHETE = r'\['
   t_ABRE_PARENTESE = r'\('
-  T_ATRIBUICAO = r'\:\='
+  t_ATRIBUICAO = r'\:\='
   t_DIFERENTE = r'\<>'
   t_DIVISAO = r'/'
   t_DOIS_PONTOS = r'\:'
@@ -86,7 +88,7 @@ class Lexica:
     pass
 
   def t_error(self, t):
-    print("ERRO - O Caractere '", t.value[0], "' nao e reconhecido")
+    print("ERRO - O Caractere '", t.value[0], "' nao é reconhecido")
     t.lexer.skip(1)
 
   def t_FLUTUANTE(self, t):
@@ -118,7 +120,7 @@ class Lexica:
       arq = open(file, encoding='utf8')
       lex.input(arq.read())
     except:
-      print('ERRO - Nao Foi Possivel Abrir o Arquivo, Por Favor Tente Novamente')
+      print("ERRO - Nao Foi Possivel Abrir o Arquivo, Por Favor Tente Novamente")
 
   def printTokens(self):
     linhaAtual = 0
@@ -131,4 +133,4 @@ class Lexica:
       if(linhaAtual < linhaToken):
         linhaAtual = linhaToken
         print("-------------- Linha ", linhaAtual, " --------------")
-      print("Token: ", tok.type, " --- Valor: ", tok.value)
+      print("Token:", tok.type, "--- Valor:", tok.value)
